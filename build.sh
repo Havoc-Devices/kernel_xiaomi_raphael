@@ -9,20 +9,20 @@ restore='\033[0m'
 clear
 
 # Resources
-export CLANG_PATH=/datadrive/sov/prebuilts/clang/host/linux-x86/clang-azure/bin
+export CLANG_PATH=/home/szradev/aex/prebuilts/clang/host/linux-x86/trb_clang/bin
 export PATH=${CLANG_PATH}:${PATH}
 export CROSS_COMPILE=${CLANG_PATH}/aarch64-linux-gnu-
 export CROSS_COMPILE_ARM32=${CLANG_PATH}/arm-linux-gnueabi-
-export THINLTO_CACHE=/datadrive/kernel/ltocache/
+#export THINLTO_CACHE=/datadrive/kernel/ltocache/
 DEFCONFIG="raphael_defconfig"
 
 # Kernel Details
-VER="R.9"
+VER="V1.31RC"
 
 # Paths
 KERNEL_DIR=`pwd`
-REPACK_DIR=/datadrive/AnyKernel3
-ZIP_MOVE=/datadrive/AK-releases
+REPACK_DIR=/home/szradev/AnyKernel3
+ZIP_MOVE=/home/szradev/kernelbuilds
 
 # Functions
 function clean_all {
@@ -34,7 +34,8 @@ function clean_all {
 
 function make_kernel {
 		echo
-		make CC=clang AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip $DEFCONFIG
+		#make CC=clang AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip $DEFCONFIG
+		make CC=clang AR=llvm-ar NN=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objduml AS=llvm-as STRIP=llvm-strip $DEFCONFIG
 		make CC=clang AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip -j$(grep -c ^processor /proc/cpuinfo)
 
 }
@@ -64,7 +65,7 @@ echo -e "${restore}"
 
 
 # Vars
-BASE_AK_VER="SOVIET-STAR-K20P-"
+BASE_AK_VER="CARBON-WAKEUPFENIX-"
 DATE=`date +"%Y%m%d-%H%M"`
 AK_VER="$BASE_AK_VER$VER"
 ZIP_NAME="$AK_VER"-"$DATE"
@@ -72,8 +73,8 @@ ZIP_NAME="$AK_VER"-"$DATE"
 #export LOCALVERSION=~`echo $AK_VER`
 export ARCH=arm64
 export SUBARCH=arm64
-export KBUILD_BUILD_USER=NATO66613
-export KBUILD_BUILD_HOST=KREMLIN
+export KBUILD_BUILD_USER=ESTYMAOWIEC
+export KBUILD_BUILD_HOST=INDIHOST
 
 echo
 
