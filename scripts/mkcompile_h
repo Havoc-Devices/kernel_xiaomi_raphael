@@ -8,6 +8,9 @@ PREEMPT=$4
 CC=$5
 LD=$6
 
+KBUILD_BUILD_USER=goindi-CI
+KBUILD_BUILD_HOST=goindi-industries
+
 vecho() { [ "${quiet}" = "silent_" ] || echo "$@" ; }
 
 # If compile.h exists already and we don't own autoconf.h
